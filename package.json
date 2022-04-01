@@ -1,0 +1,22 @@
+{
+  "name": "tutorialproject_moviestorage",
+  "version": "1.0.0",
+  "description": "Movie Storage Front-End",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "js"
+  ],
+  "author": "Phillip Faber",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pfaber777/Front-End_Portfolio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pfaber777/Front-End_Portfolio/issues"
+  },
+  "homepage": "https://github.com/pfaber777/Front-End_Portfolio#readme"
+}
