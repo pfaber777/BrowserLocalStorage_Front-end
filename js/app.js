@@ -10,8 +10,6 @@ const userInputs = addMovieModal.querySelectorAll('input');
 const entryTextSection = document.getElementById('entry-text');
 const deleteMovieModal = document.getElementById('delete-modal');
 
-
-
 const movies = [];
 
 // UI
@@ -74,8 +72,6 @@ const addMovieHandler = () => {
         image: imageUrlValue,
         rating: ratingValue
     };
-
-
     movies.push(newMovie);
     console.log(movies);
     closeMovieModal();
@@ -90,45 +86,6 @@ const addMovieHandler = () => {
     updateUI();
     
 };
-
-// handles editing inputs
-const editMovieHandler = () => {
-    const editedTitle = userInputs[0].value; // edit
-    const editedImageUrl = userInputs[1].value; // edit
-    const editedRating = userInputs[2].value; // edit
-
-    if( editedTitle.trim() === '' ||
-        editedImageUrl.trim() === '' ||
-        editedRating.trim() === '' ||
-        +ratingValue < 1 ||
-        +ratingValue > 5
-    ) {
-        alert('Please enter valid Values(rating between 1 and 5)');
-        return;
-    }
-    const replacedMovie = {
-        id: Math.random().toString(),
-        title: titleValue,
-        image: imageUrlValue,
-        rating: ratingValue
-    };
-    movies[newMovie].replaceWith(replacedMovie);
-    console.log(movies);
-    closeMovieModal();
-    clearInputs();
-    toggleBackdrop();
-    renderNewMovieElement(
-        replacedMovie.id,
-        replacedMovie.title,
-        replacedMovie.image,
-        replacedMovie.rating
-    );
-
-    
-    updateUI();
-    
-};
-
 
 const closeMovieDeletionModal = () => {
     toggleBackdrop();
@@ -169,35 +126,19 @@ const startDeleteMovieHandler = movieId => {
 };
 
 
-// renders Movie template with plugged in input
+// renders Movie template with pluggin in input
 const renderNewMovieElement = (id, title, imageUrl, rating) => {
-    
-
-
-     
-    newMovieElement = newMovieElement.createElement('button');
-    newMovieElement.button.classList.add('editButton');
-    if(newMovieElement.button.clicked = true) {
-        newMovieElement.innerHTML = `
+    const newMovieElement = document.createElement('li');
+    newMovieElement.className = 'movie-element';
+    newMovieElement.innerHTML = `
+    <div class="movie-element__image">
+    <img src="${imageUrl}" alt="${title}">
+    </div>
     <div class="movie-element__info">
-        <input type="text" name="title" id="title"/>
-        <input type="number" step="1" max="5" min="1" name="rating" id="rating"<p>/5 Stars</p>
-        <button id="edit">Edit</button>
-    </div>`;
-    } else {
-        const newMovieElement = document.createElement('li');
-        newMovieElement.className = 'movie-element';
-        newMovieElement.innerHTML = `
-        <div class="movie-element__image">
-        <img src="${imageUrl}" alt="${title}">
-        </div>
-        <div class="movie-element__info">
-            <h2>${title}</h2>
-            <p>${rating}/5 Stars</p>
-            <button id="edit">Edit</button>
-        </div>
+        <h2>${title}</h2>
+        <p>${rating}/5 Stars</p>
+    </div>
     `;
-    }
 
     newMovieElement.addEventListener('click', startDeleteMovieHandler.bind(null, id)); // opens delete confirm dialogue upon Movie UI click
     const listRoot = document.getElementById('movie-list'); // assigns full movie list to variable
